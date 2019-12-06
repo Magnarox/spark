@@ -27,12 +27,17 @@ RUN Rscript -e 'devtools::install_version("roxygen2", version = "5.0.1", repos="
 RUN Rscript -e 'devtools::install_version("testthat", version = "1.0.2", repos="https://cloud.r-project.org/")'
 
 # Install Docs Stuff
-RUN apt-get install texlive-latex-base texlive-fonts-recommended texlive-fonts-extra texlive-latex-extra qpdf -y
+RUN apt install texlive-latex-base texlive-fonts-recommended texlive-fonts-extra texlive-latex-extra qpdf -y
 
 # Add Spark 2.4.4 src
 COPY ./files/spark-2.4.4.tgz /tmp/
 RUN mkdir /spark/ && mkdir /spark/out/
 RUN chmod 755 /tmp/spark-2.4.4.tgz && tar -xzf /tmp/spark-2.4.4.tgz -C /spark/ 
+
+# Add custom Dockerfile for Python and R to FIX versions
+RUN rm /spark/resource-managers/kubernetes/docker/src/main/dockerfiles/spark/bindings/python/Dockerfile && rm /spark/resource-managers/kubernetes/docker/src/main/dockerfiles/spark/bindings/R/Dockerfile
+COPY ./files/dockerfiles/python/Dockerfile /spark/resource-managers/kubernetes/docker/src/main/dockerfiles/spark/bindings/python/Dockerfile
+COPY ./files/dockerfiles/R/Dockerfile /spark/resource-managers/kubernetes/docker/src/main/dockerfiles/spark/bindings/R/Dockerfile
 
 WORKDIR /spark/
 
