@@ -35,9 +35,9 @@ RUN mkdir /spark/ && mkdir /spark/out/
 RUN chmod 755 /tmp/spark-2.4.4.tgz && tar -xzf /tmp/spark-2.4.4.tgz -C /spark/ 
 
 # Add custom Dockerfile for Python and R to FIX versions
-RUN rm /spark/resource-managers/kubernetes/docker/src/main/dockerfiles/spark/bindings/python/Dockerfile && rm /spark/resource-managers/kubernetes/docker/src/main/dockerfiles/spark/bindings/R/Dockerfile
-COPY ./files/dockerfiles/python/Dockerfile /spark/resource-managers/kubernetes/docker/src/main/dockerfiles/spark/bindings/python/Dockerfile
-COPY ./files/dockerfiles/R/Dockerfile /spark/resource-managers/kubernetes/docker/src/main/dockerfiles/spark/bindings/R/Dockerfile
+RUN rm /spark/spark-2.4.4/resource-managers/kubernetes/docker/src/main/dockerfiles/spark/bindings/python/Dockerfile && rm /spark/spark-2.4.4/resource-managers/kubernetes/docker/src/main/dockerfiles/spark/bindings/R/Dockerfile
+COPY ./files/dockerfiles/python/Dockerfile /spark/spark-2.4.4/resource-managers/kubernetes/docker/src/main/dockerfiles/spark/bindings/python/Dockerfile
+COPY ./files/dockerfiles/R/Dockerfile /spark/spark-2.4.4/resource-managers/kubernetes/docker/src/main/dockerfiles/spark/bindings/R/Dockerfile
 
 WORKDIR /spark/
 
