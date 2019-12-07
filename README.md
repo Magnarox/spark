@@ -44,8 +44,8 @@ Your distrib is Ready
 
 Get the distrib and untar it then build images :
 
-    tar xvf spark-2.4.4-bin-magnarox-spark.tgz -C spark-2.4.4
-    cd spark-2.4.4
+    tar xvf spark-2.4.4-bin-magnarox-spark.tgz
+    cd spark-2.4.4-bin-magnarox-spark.tgz
     ./bin/docker-image-tool.sh -r magnarox -t latest build
     ./bin/docker-image-tool.sh -r magnarox -t latest push
 
