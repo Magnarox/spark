@@ -31,13 +31,16 @@ RUN apt install texlive-latex-base texlive-fonts-recommended texlive-fonts-extra
 
 # Add Spark 2.4.4 src
 COPY ./files/spark-2.4.4.tgz /tmp/
-RUN mkdir /spark/ && mkdir /spark/out/
-RUN chmod 755 /tmp/spark-2.4.4.tgz && tar -xzf /tmp/spark-2.4.4.tgz -C /spark/ 
+RUN mkdir /spark/ && mkdir /spark/out/ && mkdir /spark/custom-jars/
+RUN chmod 755 /tmp/spark-2.4.4.tgz && tar -xzf /tmp/spark-2.4.4.tgz -C /spark/ && rm /tmp/spark-2.4.4.tgz
 
 # Add custom Dockerfile for Python and R to FIX versions
 RUN rm /spark/spark-2.4.4/resource-managers/kubernetes/docker/src/main/dockerfiles/spark/bindings/python/Dockerfile && rm /spark/spark-2.4.4/resource-managers/kubernetes/docker/src/main/dockerfiles/spark/bindings/R/Dockerfile
 COPY ./files/dockerfiles/python/Dockerfile /spark/spark-2.4.4/resource-managers/kubernetes/docker/src/main/dockerfiles/spark/bindings/python/Dockerfile
 COPY ./files/dockerfiles/R/Dockerfile /spark/spark-2.4.4/resource-managers/kubernetes/docker/src/main/dockerfiles/spark/bindings/R/Dockerfile
+
+# Add custom jars
+COPY ./custom-jars/ /spark/custom-jars/
 
 WORKDIR /spark/
 

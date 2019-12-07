@@ -1,3 +1,3 @@
 #!/bin/bash
 
-docker build -t spark-builder .
+docker build -t magnarox/spark-builder:latest .
