@@ -15,6 +15,6 @@ cp *.tgz ../out/
 cd ../out/
 tar xvf spark-2.4.4-bin-magnarox-spark.tgz
 cp -R ../spark-2.4.4/licenses/ spark-2.4.4-bin-magnarox-spark/
-cp custom-jars/*.jar spark-2.4.4-bin-magnarox-spark/jars/
+cp ../custom-jars/*.jar spark-2.4.4-bin-magnarox-spark/jars/
 rm spark-2.4.4-bin-magnarox-spark.tgz
 tar czf spark-2.4.4-bin-magnarox-spark.tgz spark-2.4.4-bin-magnarox-spark
