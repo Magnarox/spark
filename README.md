@@ -40,5 +40,10 @@ Get the distrib and untar it then build images :
     ./bin/docker-image-tool.sh -r magnarox -t latest build
     ./bin/docker-image-tool.sh -r magnarox -t latest push
 
+## Build and install pyspark
 
+    cd spark-2.4.4-bin-magnarox-spark/python
+    python setup.py sdist
+    cd dist
+    pip install pyspark-2.4.4.tar.gz
 
